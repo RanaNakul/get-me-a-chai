@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Btn from "@/components/common/Btn";
 import { fetchUser, updateProfile } from "@/actions/userActions";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 
 const Dashboard = () => {
   const { data: session, status, update } = useSession();
@@ -80,19 +80,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
+      
       <div>
         <h1 className="text-2xl md:text-3xl font-bold text-center pt-10">
           Welcome to your Dashboard

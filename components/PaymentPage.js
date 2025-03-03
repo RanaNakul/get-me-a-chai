@@ -2,11 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import Script from "next/script";
-import { fetchPayment, fetchTotalPayment, fetchUser, initiate } from "@/actions/userActions";
+import {
+  fetchPayment,
+  fetchTotalPayment,
+  fetchUser,
+  initiate,
+} from "@/actions/userActions";
 import Btn from "./common/Btn";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -35,10 +40,7 @@ const PaymentPage = ({ username }) => {
           theme: "light",
           transition: Bounce,
         });
-        setTimeout(() => {
-          router.push("/");
-        }, 2000);
-
+        router.push("/");
       }
       let dbPayments = await fetchPayment(username);
       let totalPayments = await fetchTotalPayment(username);
@@ -129,20 +131,6 @@ const PaymentPage = ({ username }) => {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
-
       <div className="relative  w-full h-[170px] sm:h-[250px] md:h-[350px] bg-black flex justify-center items-center ">
         {
           // Cover Image
@@ -189,13 +177,20 @@ const PaymentPage = ({ username }) => {
         <div className="payment flex flex-col lg:flex-row gap-3 w-[80%] pt-10">
           {/*Supporters */}
           <div className="supporters lg:w-1/2 bg-slate-900 rounded-lg p-10">
-            <h2 className="text-xl sm:text-2xl font-bold pb-5 md:py-5">Top 10 Supporters</h2>
+            <h2 className="text-xl sm:text-2xl font-bold pb-5 md:py-5">
+              Top 10 Supporters
+            </h2>
             <ul className="flex flex-col gap-4 md:pl-5 text-lg">
               {payments.length === 0 ? (
-                <div className="text-sm md:text-base text-center">No Supporters Yet</div>
+                <div className="text-sm md:text-base text-center">
+                  No Supporters Yet
+                </div>
               ) : (
                 payments.map((payment, i) => (
-                  <li key={i} className="text-sm md:text-base flex gap-2 items-center">
+                  <li
+                    key={i}
+                    className="text-sm md:text-base flex gap-2 items-center"
+                  >
                     <Image
                       className="w-[23px] h-[23px] sm:w-[33px] sm:h-[33px] rounded-full"
                       src="./avatar.gif"
@@ -223,7 +218,9 @@ const PaymentPage = ({ username }) => {
             />
 
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold pb-5 md:py-5">Make a Payment</h2>
+              <h2 className="text-xl sm:text-2xl font-bold pb-5 md:py-5">
+                Make a Payment
+              </h2>
               <div className="flex flex-col gap-2 text-sm sm:text-base">
                 <input
                   onChange={handlerChange}
